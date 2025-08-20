@@ -11,7 +11,7 @@ pip install properprot-client
 
 ## Usage
 ```python
-from properprot_client import APIClient
+from properprot_api import APIClient
 
 client = APIClient(api_key="API_KEY", base_url="https://api.example.com")
 
