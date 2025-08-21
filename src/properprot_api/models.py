@@ -44,7 +44,7 @@ class Rule(BaseModel):
         if v in {"0", "0.0.0.0", "0.0.0.0/0"}:
             return "0.0.0.0/0"
         try:
-            # Normalize to canonical network string; strict=False allows host IPs
+            # Normalize to canonical network string; strict=False allows host IPs (e.g 127.0.0.1/24)
             return str(ip_network(v, strict=False))
         except Exception:
             raise ValueError(f"Invalid source_ip format (expected IP or CIDR): '{v}'")
@@ -57,7 +57,6 @@ class RuleResponse(BaseModel):
 
 class AddRuleResponse(BaseModel):
     message: str
-    # Prefer Rule here for type safety; keeping dict[str, Any] to avoid breaking change
     rule: dict[str, Any]
 
 
